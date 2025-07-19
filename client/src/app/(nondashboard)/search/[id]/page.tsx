@@ -3,6 +3,7 @@
 import { useGetAuthUserQuery } from "@/state/api";
 import { useParams } from "next/navigation";
 import { useState } from "react";
+import ApplicationModal from "./ApplicationModal";
 import ContactWidget from "./ContactWidget";
 import ImagePreviews from "./ImagePreviews";
 import PropertyDetails from "./PropertyDetails";
@@ -31,6 +32,14 @@ const SingleListing = () => {
           <ContactWidget onOpenModal={() => setIsModalOpen(true)} />
         </div>
       </div>
+
+      {authUser && (
+        <ApplicationModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          propertyId={propertyId}
+        />
+      )}
     </div>
   );
 };
